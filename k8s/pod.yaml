@@ -4,5 +4,5 @@ metadata:
   name: nginx
 spec:
   containers:
-  - name: nginx
+  - name: nginx222
     image: docker.io/nginx:1.14.2
