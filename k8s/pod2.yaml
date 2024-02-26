@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx33
+spec:
+  containers:
+  - name: nginx333
+    image: docker.io/nginx:1.14.2
