@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: kkk
+  name: tt
 spec:
   containers:
   - name: nginx333
