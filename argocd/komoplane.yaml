@@ -12,8 +12,24 @@ spec:
     chart: komoplane
     targetRevision: 0.1.5
     helm:
-      valueFiles:
-        - komoplane-values.yaml
+      values: |
+        ingress:
+          enabled: true
+          annotations:
+            nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+            nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+          labels: { }
+          hosts:
+            - host: crossplane.my
+              http:
+                paths:
+                - path: /
+                  pathType: Prefix
+                  backend:
+                    service:
+                      name: komoplane
+                      port:
+                        name: http
   destination:
     server: https://kubernetes.default.svc
     namespace: komoplane
