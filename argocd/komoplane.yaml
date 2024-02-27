@@ -21,8 +21,8 @@ spec:
           hosts:
             - host: crossplane.my
               paths:
-              - path: /
-                pathType: ImplementationSpecific
+              - path: /komoplane
+                pathType: Prefix
   destination:
     server: https://kubernetes.default.svc
     namespace: komoplane
