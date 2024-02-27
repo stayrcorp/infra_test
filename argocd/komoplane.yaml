@@ -1,19 +1,19 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: crossplane
+  name: komoplane
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
-    repoURL: https://charts.crossplane.io/stable
-    chart: crossplane
-    targetRevision: 1.15.0
+    repoURL: https://helm-charts.komodor.io
+    chart: komoplane
+    targetRevision: 0.1.5
   destination:
     server: https://kubernetes.default.svc
-    namespace: crossplane
+    namespace: komoplane
   syncPolicy:
     automated:
       prune: true
