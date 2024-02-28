@@ -5,3 +5,5 @@ metadata:
 spec:
   forProvider:
     location: West Europe
+    tags:
+      provisioner: crossplane
