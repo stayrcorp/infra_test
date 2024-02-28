@@ -15,6 +15,7 @@ spec:
       values: |
         ingress:
           enabled: true
+          className: nginx
           annotations:
             nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
             nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
@@ -22,7 +23,7 @@ spec:
             - host: crossplane.my
               paths:
               - path: /komoplane
-                pathType: Prefix
+                pathType: ImplementationSpecific
   destination:
     server: https://kubernetes.default.svc
     namespace: komoplane
