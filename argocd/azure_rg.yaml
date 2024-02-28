@@ -1,7 +1,7 @@
 apiVersion: azure.upbound.io/v1beta1
 kind: ResourceGroup
 metadata:
-  name: rg_test
+  name: rgtest
 spec:
   forProvider:
     location: West Europe
