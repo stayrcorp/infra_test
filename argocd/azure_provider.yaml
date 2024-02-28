@@ -2,14 +2,16 @@
 apiVersion: pkg.crossplane.io/v1
 kind: Provider
 metadata:
+  namespace: crossplane-system
   name: provider-azure
 spec:
   package: xpkg.upbound.io/upbound/provider-azure:0.42.1
 ---
 apiVersion: azure.upbound.io/v1beta1
-metadata:
-  name: default
 kind: ProviderConfig
+metadata:
+  namespace: crossplane-system
+  name: default
 spec:
   credentials:
     source: Secret
