@@ -10,7 +10,7 @@ spec:
 apiVersion: devopstoolkitseries.com/v1alpha1
 kind: ClusterClaim
 metadata:
-  namespace: crossplane-system
+  namespace: a-team
   name: a-team-aks
 spec:
   id: ateamaks
