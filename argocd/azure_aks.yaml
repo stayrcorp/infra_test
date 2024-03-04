@@ -1,42 +1,42 @@
----
-apiVersion: pkg.crossplane.io/v1
-kind: Configuration
-metadata:
-  namespace: crossplane-system
-  name: dot-kubernetes
-spec:
-  package: xpkg.upbound.io/devops-toolkit/dot-kubernetes:v0.12.29
----
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: a-team
----
-apiVersion: azure.upbound.io/v1beta1
-kind: ResourceGroup
-metadata:
-  name: ateamaks
-  namespace: crossplane-system
-spec:
-  forProvider:
-    location: West Europe
-    tags:
-      provisioner: crossplane
----
-apiVersion: devopstoolkitseries.com/v1alpha1
-kind: ClusterClaim
-metadata:
-  namespace: a-team
-  name: a-team-aks
-spec:
-  id: ateamaks
-  compositionSelector:
-    matchLabels:
-      provider: azure
-      cluster: aks
-  parameters:
-    nodeSize: small
-    minNodeCount: 1
-    apps:
-      traefik:
-        enabled: true
+# ---
+# apiVersion: pkg.crossplane.io/v1
+# kind: Configuration
+# metadata:
+#   namespace: crossplane-system
+#   name: dot-kubernetes
+# spec:
+#   package: xpkg.upbound.io/devops-toolkit/dot-kubernetes:v0.12.29
+# ---
+# apiVersion: v1
+# kind: Namespace
+# metadata:
+#   name: a-team
+# ---
+# apiVersion: azure.upbound.io/v1beta1
+# kind: ResourceGroup
+# metadata:
+#   name: ateamaks
+#   namespace: crossplane-system
+# spec:
+#   forProvider:
+#     location: West Europe
+#     tags:
+#       provisioner: crossplane
+# ---
+# apiVersion: devopstoolkitseries.com/v1alpha1
+# kind: ClusterClaim
+# metadata:
+#   namespace: a-team
+#   name: a-team-aks
+# spec:
+#   id: ateamaks
+#   compositionSelector:
+#     matchLabels:
+#       provider: azure
+#       cluster: aks
+#   parameters:
+#     nodeSize: small
+#     minNodeCount: 1
+#     apps:
+#       traefik:
+#         enabled: true
