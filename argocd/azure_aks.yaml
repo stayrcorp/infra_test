@@ -37,4 +37,6 @@ spec:
   parameters:
     nodeSize: small
     minNodeCount: 1
-    maxNodeCount: 2
+    apps:
+      traefik:
+        enabled: true
