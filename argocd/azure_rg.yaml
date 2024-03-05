@@ -1,7 +1,7 @@
 apiVersion: azure.upbound.io/v1beta1
 kind: ResourceGroup
 metadata:
-  name: rgtest
+  name: rgtest-2
   namespace: crossplane-system
 spec:
   forProvider:
