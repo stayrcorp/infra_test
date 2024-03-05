@@ -18,7 +18,7 @@ spec:
     kubernetesClusterIdSelector:
       matchLabels:
         testing.upbound.io/example-name: example
-    nodeCount: 1
+    nodeCount: 3
     tags:
       Environment: Production
     vmSize: Standard_DS2_v2
