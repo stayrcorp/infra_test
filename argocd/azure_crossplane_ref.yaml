@@ -1,16 +1,63 @@
-apiVersion: azure.platformref.upbound.io/v1alpha1
-kind: Cluster
+---
+apiVersion: pkg.crossplane.io/v1
+kind: Provider
 metadata:
-  name: platform-ref-azure-cluster
-  namespace: crossplane-system
+  name: provider-azure-containerservice
 spec:
-  compositeDeletePolicy: Foreground
-  parameters:
-    id: platform-ref-azure-cluster
-    region: westus
-    version: "1.27.3"
-    nodes:
-      count: 1
-      instanceType: Standard_B2s
-  writeConnectionSecretToRef:
-    name: platform-ref-azure-cluster-kubeconfig
+  package: xpkg.upbound.io/upbound/provider-azure-containerservice:v0.42.1
+
+---
+apiVersion: containerservice.azure.upbound.io/v1beta1
+kind: KubernetesClusterNodePool
+metadata:
+  labels:
+    testing.upbound.io/example-name: example
+  name: example
+spec:
+  forProvider:
+    kubernetesClusterIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    nodeCount: 1
+    tags:
+      Environment: Production
+    vmSize: Standard_DS2_v2
+
+---
+
+apiVersion: containerservice.azure.upbound.io/v1beta1
+kind: KubernetesCluster
+metadata:
+  labels:
+    testing.upbound.io/example-name: example
+  name: example
+spec:
+  forProvider:
+    defaultNodePool:
+    - name: default
+      nodeCount: 1
+      vmSize: Standard_D2_v2
+    dnsPrefix: exampleaks1
+    identity:
+    - type: SystemAssigned
+    location: West Europe
+    resourceGroupNameSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example-containerservice
+    tags:
+      Environment: Production
+    apiServerAccessProfile:
+      - authorizedIpRanges:
+         - 192.168.1.0/24
+
+---
+
+apiVersion: azure.upbound.io/v1beta1
+kind: ResourceGroup
+metadata:
+  labels:
+    testing.upbound.io/example-name: example-containerservice
+  name: example-containerservice-${Rand.RFC1123Subdomain}
+spec:
+  forProvider:
+    location: West Europe
