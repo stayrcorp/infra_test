@@ -21,3 +21,8 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamesapce=true
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: crossplane-system
